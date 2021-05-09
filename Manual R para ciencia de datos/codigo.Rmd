@@ -1,0 +1,44 @@
+---
+title: "Intruducción al análisis de datos en R"
+author: "Cristian Sánchez"
+date: "8/5/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Lenguaje de programación R
+
+En la actualidad, R es uno de los lenguajes de progrmación más populares entre la comunidad cientifica, dado que es un software libre, es de facil aprendisaje y cuanta con una extensa cantida de librerias para realizar análisis estadístico.
+
+
+
+## Tipos de objetos en R
+
+Para iniciarse un lenguaje de programación es una buena práctica, conocer cuales son los objetos, o dicho en otras palabras, como almacena información en memoria el lenguaje.
+
+* *Ejemplos de Variables unitarias*. Este tipo de objeto es indexable, sin embargo en el caso de la cadena, no se puede acceder a cada elemento como se lo aría en otros lenguajes como Python.
+```{r}
+a<- 6
+b<- "Mi primera cadena"
+```
+* *Vectores de datos*. Los venctores de datos se pueden crear a través de la función *c* o en su defecto por medio de un rango. Es de gran importancia considerar, que al generar un vector con varios tipos de elmentos estos se convertiran a strngs.
+```{r}
+vector<- c(1,2,3,4,5)
+rango<- 1:5
+multivalor<-c(1,2,"tres")
+```
+* *Matrices*. Las matrices son estructuras que pueden almacenar más de una variable. Al utilizar la funcion **rbind** se puede ingresar cada vector como una fila de la matrix
+```{r}
+matrix1<- matrix(1:15, ncol=5)
+matrix2<- rbind(c(1,4,7,10),c(2,3,8,11))
+
+```
+* *Dataframe*. Los dataframes son objetos que se acemejan mucho a las hojas de un libro de excel, y por este motivo, es el objeto más utilizado en la ciencia de datos.
+```{r}
+matrix1<- matrix(1:15, ncol=5)
+matrix2<- rbind(c(1,4,7,10),c(2,3,8,11))
+
+```
