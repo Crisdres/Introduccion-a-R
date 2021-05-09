@@ -375,23 +375,170 @@ summary {
 </div>
 <div id="tipos-de-objetos-en-r" class="section level2">
 <h2>Tipos de objetos en R</h2>
-<p>Para iniciarse un lenguaje de programación es una buena práctica, conocer cuales son los objetos, o dicho en otras palabras, como almacena información en memoria el lenguaje.</p>
+<p>Para iniciarse un lenguaje de programación es una buena práctica, conocer cuales son los objetos, o dicho en otras palabras, como almacena información el lenguaje de progrmación en la memoria del ordenador.</p>
 <ul>
 <li><em>Ejemplos de Variables unitarias</em>. Este tipo de objeto es indexable, sin embargo en el caso de la cadena, no se puede acceder a cada elemento como se lo aría en otros lenguajes como Python.</li>
 </ul>
 <pre class="r"><code>a&lt;- 6
 b&lt;- &quot;Mi primera cadena&quot;</code></pre>
 <ul>
-<li><em>Vectores de datos</em>. Los venctores de datos se pueden crear a través de la función <em>c</em> o en su defecto por medio de un rango. Es de gran importancia considerar, que al generar un vector con varios tipos de elmentos estos se convertiran a strngs.</li>
+<li><em>Vectores de datos</em>. Los venctores de datos se pueden crear a través de la función <em>c</em> o en su defecto por medio de un rango. Es de gran importancia considerar, que al generar un vector con varios tipos de elmentos estos se convertiran a strIngs.</li>
 </ul>
 <pre class="r"><code>vector&lt;- c(1,2,3,4,5)
 rango&lt;- 1:5
 multivalor&lt;-c(1,2,&quot;tres&quot;)</code></pre>
 <ul>
-<li><em>Matrices</em>. Las matrices son estructuras que pueden almacenar más de una variable. Al utilizar la funcion <strong>rbind</strong> se puede ingresar cada vector como una fila de la matrix</li>
+<li><em>Matrices</em>. Las matrices son estructuras que pueden almacenar más de una variable. Al utilizar la función <strong>rbind</strong> se puede ingresar cada vector como una fila de la matrix</li>
 </ul>
 <pre class="r"><code>matrix1&lt;- matrix(1:15, ncol=5)
 matrix2&lt;- rbind(c(1,4,7,10),c(2,3,8,11))</code></pre>
+<ul>
+<li><em>Dataframe</em>. Los dataframes son objetos que se asemejan mucho a las hojas de un libro excel, y por este motivo, es el objeto más utilizado en la ciencia de datos.</li>
+</ul>
+<pre class="r"><code>library(readxl)
+df&lt;- as.data.frame(read_excel(&quot;base.xlsx&quot;))
+df</code></pre>
+<pre><code>##   Numeros nombres
+## 1       1     uno
+## 2       2     dos
+## 3       3    tres
+## 4       4  cuatro
+## 5       5   cinco
+## 6       6    seis</code></pre>
+</div>
+<div id="manipulación-de-dataframes" class="section level2">
+<h2>Manipulación de dataframes</h2>
+<p>A continuación se presenta cuales son los métodos de mayor utilidad para trabajar eficazmente con dataframes en R.</p>
+<div id="seleccionar-columnas" class="section level3">
+<h3>Seleccionar columnas</h3>
+<p>Para seleccionar columnas, se puede utilizar la sintaxis de indexado de python, sin embargo, el simbolo <strong>$</strong> es de gran utilidad en R, dado que permite visualizar las columnas antes de escogerlas, ademas, es muy eficaz para realizar funciones más complejas.</p>
+<ul>
+<li>Utilizando el símbolo <em>$</em></li>
+</ul>
+<pre class="r"><code>df$Numeros</code></pre>
+<pre><code>## [1] 1 2 3 4 5 6</code></pre>
+<ul>
+<li>Indexado por nombre de columna</li>
+</ul>
+<pre class="r"><code>df[&quot;Numeros&quot;]</code></pre>
+<pre><code>##   Numeros
+## 1       1
+## 2       2
+## 3       3
+## 4       4
+## 5       5
+## 6       6</code></pre>
+<ul>
+<li>Indexado por pocisión de columna</li>
+</ul>
+<pre class="r"><code>df[1]</code></pre>
+<pre><code>##   Numeros
+## 1       1
+## 2       2
+## 3       3
+## 4       4
+## 5       5
+## 6       6</code></pre>
+<p>Se puede evidenciar que al invocuar a la columna por medio de indexación el ouput es distinto, sin embargo el resultado es basicamente el mismo. ### Añadir columnas Para añadir columnas se puede utilizar, ya sea el símbolo <em>$</em> o por indexado con corchetes como se muestra a continuación.</p>
+<pre class="r"><code>df$edad=c(10,12,13,9,5,16)
+df[&quot;genero&quot;]=c(&quot;h&quot;,&quot;m&quot;,&quot;m&quot;,&quot;m&quot;,&quot;m&quot;,&quot;h&quot;)
+knitr::kable(df)</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="right">Numeros</th>
+<th align="left">nombres</th>
+<th align="right">edad</th>
+<th align="left">genero</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="left">uno</td>
+<td align="right">10</td>
+<td align="left">h</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="left">dos</td>
+<td align="right">12</td>
+<td align="left">m</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="left">tres</td>
+<td align="right">13</td>
+<td align="left">m</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="left">cuatro</td>
+<td align="right">9</td>
+<td align="left">m</td>
+</tr>
+<tr class="odd">
+<td align="right">5</td>
+<td align="left">cinco</td>
+<td align="right">5</td>
+<td align="left">m</td>
+</tr>
+<tr class="even">
+<td align="right">6</td>
+<td align="left">seis</td>
+<td align="right">16</td>
+<td align="left">h</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="seleccionar-varias-columnas-a-la-vez" class="section level3">
+<h3>Seleccionar varias columnas a la vez</h3>
+<p>Para la selección de múltiples columnas, R ofrece gran variedad de metodos, a continuación se ejemplifica las maneras más prácticas para hacerlo.</p>
+<pre class="r"><code>df[,1:4]</code></pre>
+<pre><code>##   Numeros nombres edad genero
+## 1       1     uno   10      h
+## 2       2     dos   12      m
+## 3       3    tres   13      m
+## 4       4  cuatro    9      m
+## 5       5   cinco    5      m
+## 6       6    seis   16      h</code></pre>
+<pre class="r"><code>df[,c(&quot;Numeros&quot;,&quot;nombres&quot;)]</code></pre>
+<pre><code>##   Numeros nombres
+## 1       1     uno
+## 2       2     dos
+## 3       3    tres
+## 4       4  cuatro
+## 5       5   cinco
+## 6       6    seis</code></pre>
+</div>
+</div>
+<div id="listas" class="section level2">
+<h2>Listas</h2>
+<p>Finalmente, el último objeto y el más flexible que se puede utilizar en R, son las listas, en estos objetos se puede almacenar cualquier tipo de dato, ya sean otros dataframes, enteros, caracteres, etc.</p>
+<pre class="r"><code>lista&lt;-list()
+lista$elemnto1&lt;-c(1,2,3)
+lista$elemnto2&lt;-&quot;hola mundo&quot;
+lista$elemnto3&lt;-29
+lista</code></pre>
+<pre><code>## $elemnto1
+## [1] 1 2 3
+## 
+## $elemnto2
+## [1] &quot;hola mundo&quot;
+## 
+## $elemnto3
+## [1] 29</code></pre>
+<p>Para accedar a los elementos de la lista, se puede utilizar la misma sintaxis anteriormente explicada en los dataframes.</p>
+<pre class="r"><code>lista[1]</code></pre>
+<pre><code>## $elemnto1
+## [1] 1 2 3</code></pre>
+<pre class="r"><code>lista$elemnto1</code></pre>
+<pre><code>## [1] 1 2 3</code></pre>
+<pre class="r"><code>lista[[1]][2]</code></pre>
+<pre><code>## [1] 2</code></pre>
+<pre class="r"><code>lista$elemnto1[2]</code></pre>
+<pre><code>## [1] 2</code></pre>
 </div>
 
 
