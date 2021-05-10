@@ -1,0 +1,50 @@
+---
+title: "Programación vectorial en R"
+author: "Cristian Sánchez"
+date: "9/5/2021"
+output: html_document
+---
+
+# Programación vectorial en R
+
+La progrmación vectorial permite optimizar los recursos de la computadora, y por ende, obtener resultados en menor tiempo y a un menor costo computacional. Al utilizar programación vectorial se puede evitar el uso de bucle *for* (en la mayoría de los casos) y esto logra una sintaxis más limpia.
+
+A continuación, se presentan algunos ejemplos de programación vectorial en R
+
+```{r}
+datos=as.data.frame(matrix(data=1:30,nrow=5))
+```
+* Operaciones matemáticas entre vectores
+
+```{r}
+datos$sumav1v2=datos$V1+datos$V2
+datos$restav1v2=datos$V1-datos$V2
+datos
+```
+* Comparación lógica entre vectores
+
+```{r}
+datos$mayor=datos$V2>datos$V3
+datos
+```
+* Mascara condicional para obtener un vector
+
+```{r}
+datos2=datos[datos>10]
+datos2
+```
+
+* Producto matricial de dos vectores
+
+```{r}
+datos=datos[,1:8]
+datos$V1 %*% rep(1,length(datos$V1))
+
+```
+* Obtener suma por filas a través de un producto matricial
+
+```{r}
+datos<- as.matrix(datos)
+datos %*% rep(1,length(datos))
+
+```
